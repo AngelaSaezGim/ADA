@@ -1,0 +1,109 @@
+ADA
+
+Mongodb
+
+mongosh
+
+show dbs
+use WheatherData
+show collections (saldrá WeatherDataAS01)
+db.WeatherDataAS01.find().pretty()
+
+
+
+
+        // Conexión a la base de datos WeatherData
+        /*
+        try (Connection weatherConnection = manager.getConnection("WeatherData");
+             Statement stmt = weatherConnection.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM WeatherTable")) {
+            while (rs.next()) {
+                System.out.println("WeatherData Row: " + rs.getString(1));
+            }
+        } catch (Exception e) {
+            System.err.println("Error con WeatherData: " + e.getMessage());
+        }
+
+        // Conexión a la base de datos UserInfo
+        try (Connection userInfoConnection = manager.getConnection("UserInfo");
+             Statement stmt = userInfoConnection.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM UserTable")) {
+            while (rs.next()) {
+                System.out.println("UserInfo Row: " + rs.getString(1));
+            }
+        } catch (Exception e) {
+            System.err.println("Error con UserInfo: " + e.getMessage());
+        }*/
+        
+        
+        
+        /*
+         // Hacemos conexión SQL con userInfo para consultar usuario
+        try (Connection userInfoConnection = manager.getConnection("userInfo")) {
+       
+         System.out.println("Benvingut XXXXXX, a la teua ciutat ZZZZZZZ hi ha una temperatura de X graus centígrads.");
+    
+        } catch(SQLException sqe) {
+            System.out.println("Error de acceso a datos: " + sqe.getMessage());
+        }
+        //Hacemos conexión SQL con wheaterData y reproducimos el menu de opciones
+        try (Connection weatherConnection =  manager.getConnection("wheatherData")) {
+            
+            
+            do {
+                System.out.println("Menu de Opciones");
+                System.out.println("Usando: " + "ejmongoDB");
+                System.out.println("Elementos en la base de datos: " + "ejmongoDB");
+                printOptions();
+                opcionElegida = readChoice();
+
+                switch (opcionElegida) {
+                    case QUERY_ALL:
+                        DataAccessManagerMongoDB.getInstance();
+                        break;
+                    case QUERY_BY_CODE:
+                        break;
+                    case QUERY_CLIENTES_INSERT:
+                        break;
+                    case QUERY_CLIENTES_UPDATE:
+                        break;
+                    case QUERY_CLIENTES_DELETE:
+                        break;
+                    case EXIT:
+                }
+            } while (opcionElegida != MenuOption.EXIT);
+
+        } catch (SQLException sqe) {
+            System.out.println("Error de acceso a datos: " + sqe.getMessage());
+        }
+        System.out.println("\n\n  ADIOS !!!! \n\n");
+        tcl.close();
+
+*/
+    }
+
+    private static MenuOption readChoice() {
+        try {
+            int choiceInt = Integer.valueOf(tcl.nextLine());
+            return MenuOption.values()[choiceInt - 1];
+        } catch (RuntimeException re) {
+            System.out.println("Opción inválida... Inténtelo otra vez.");
+            return readChoice();
+        }
+    }
+
+    private static void printOptions() {
+        StringBuilder sb = new StringBuilder()
+                .append("\n\n\nElija una opción:\n")
+                .append("\t1) Cambiar Base de datos (SQL/MongoDB) \n")
+                .append("\t2)\n")
+                .append("\t3)\n")
+                .append("\t4)\n")
+                .append("Opción: ");
+        System.out.print(sb.toString());
+    }
+
+    public static void selectConnectionSQL(DataAccessManagerSQL dam) throws SQLException {
+        System.out.println("a");
+    }
+}
